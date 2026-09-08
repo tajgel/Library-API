@@ -1,0 +1,29 @@
+GET http://localhost:5005/library/1
+
+###
+
+POST http://localhost:5005/library
+Content-Type: application/json
+
+{
+  "Name": "goonmsy",
+  "Genre": "pornhub",
+  "Price": 74,
+  "ReleaseDate": "2023-11-06"
+}
+
+###
+
+PUT http://localhost:5005/library/1
+Content-Type: application/json
+
+{
+  "Name": "goonmsy",
+  "Genre": "pornhub",
+  "Price": 74,
+  "ReleaseDate": "2023-11-06"
+}
+
+###
+
+DELETE http://localhost:5005/library/1
