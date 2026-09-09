@@ -27,7 +27,7 @@ public class LibraryEndpoints
         var library = app.MapGroup("/library");
         library.MapGet("{id}", (int id) =>
         {
-            return Results.Ok(LibraryList.Find(game => game.Id == id));
+            return LibraryList.Find(game => game.Id == id) != null ? Results.Ok() : Results.NotFound();
         }).WithName("GetLibrary");
         library.MapPost("/", (CreateLibraryDto dto) =>
         {
@@ -43,6 +43,7 @@ public class LibraryEndpoints
         library.MapPut("{id}", (int id, UpdateLibraryDto updatedLibrary) =>
         {
             int index = LibraryList.FindIndex(game => game.Id == id);
+            if (index == -1) return Results.NotFound();
             LibraryList[index] = new(
                     id,
                     updatedLibrary.Name,
